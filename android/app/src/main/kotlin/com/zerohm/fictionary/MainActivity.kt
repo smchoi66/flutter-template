@@ -1,4 +1,4 @@
-package com.zerohm.flutter_base
+package com.zerohm.fictionary
 
 import io.flutter.embedding.android.FlutterActivity
 
