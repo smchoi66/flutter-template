@@ -1,4 +1,4 @@
-package com.zerohm.fictionary
+package com.zerohm.flutter_template
 
 import io.flutter.embedding.android.FlutterActivity
 
