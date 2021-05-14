@@ -36,9 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: FutureBuilder(
         future: factsService.getFacts(),
-        builder: (_, AsyncSnapshot snapshot) {
+        builder: (_, AsyncSnapshot<FactsResponse?> snapshot) {
           if (snapshot.hasData) {
-            final FactsResponse factsResponse = snapshot.data as FactsResponse;
+            final factsResponse = snapshot.data!;
             return ListView.builder(
               itemCount: factsResponse.facts?.length,
               itemBuilder: (_, index) {

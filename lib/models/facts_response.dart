@@ -11,7 +11,7 @@ class FactsResponse {
     if (json['facts'] != null) {
       facts = <Fact>[];
       json['facts']!.forEach((v) {
-      facts!.add(Fact.fromJson(v));
+        facts!.add(Fact.fromJson(v));
       });
     }
   }

@@ -9,7 +9,6 @@ class FactsService {
     response = await http
         .get(Uri.parse('https://thegrowingdeveloper.org/apiview?id=2'));
 
-    // FactsResponse factsResponse;
     if (response.statusCode == 200) {
       return FactsResponse.fromJson(json.decode(response.body));
     } else {
