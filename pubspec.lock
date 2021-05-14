@@ -7,7 +7,11 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.6.1"
+=======
+    version: "2.5.0"
+>>>>>>> fd11615fbeb2d876df525227c7a76d550fb941be
   boolean_selector:
     dependency: transitive
     description:
@@ -74,6 +78,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get:
+    dependency: "direct main"
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.4"
   lint:
     dependency: "direct dev"
     description:
