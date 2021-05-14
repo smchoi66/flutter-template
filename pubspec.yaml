@@ -11,17 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons:
-  get:
+  cupertino_icons: ^1.0.3
+  get: ^4.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  change_app_package_name:
-  lint:
+  lint: ^1.5.3
 
 flutter:
-
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   # assets:
