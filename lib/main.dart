@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/models/facts_response.dart';
+import 'package:flutter_basic/services/facts_service.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,13 +26,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FactsService factsService = FactsService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter Template'),
       ),
-      body: Container(),
+      body: FutureBuilder(
+        future: factsService.getFacts(),
+        builder: (_, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            final FactsResponse factsResponse = snapshot.data as FactsResponse;
+            return ListView.builder(
+              itemCount: factsResponse.facts?.length,
+              itemBuilder: (_, index) {
+                return ListTile(
+                  title: Text(factsResponse.facts![index].title!),
+                );
+              },
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
+      ),
     );
   }
 }
