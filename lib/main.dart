@@ -1,35 +1,37 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'dart:io';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:flutter_basic/controllers/todo_controller.dart';
+import 'package:flutter_basic/models/todo.dart';
+import 'package:flutter_basic/screens/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final Directory dir = await getApplicationDocumentsDirectory();
+  await Hive.initFlutter(dir.path);
+  Hive.registerAdapter<Todo>(TodoAdapter());
+  await Hive.openBox<Todo>('todos');
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put<TodoController>(TodoController());
+
     return GetMaterialApp(
-      title: 'Flutter Template',
+      title: 'Hive tod with GetX',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return Scaffold(
-      body: const Text('text'),
+      home: HomeScreen(),
     );
   }
 }
