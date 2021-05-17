@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/models/hive_data_model.dart';
+import 'package:flutter_basic/screens/home.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  var initialized = false;
+  if (!initialized) {
+    initialized = true;
+    await Hive.initFlutter();
+    Hive.registerAdapter<ProductModel>(ProductModelAdapter());
+    Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
+  }
   runApp(MyApp());
 }
 
@@ -14,22 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return Scaffold(
-      body: const Text('text'),
+      home: HomePage(),
     );
   }
 }
